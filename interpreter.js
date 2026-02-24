@@ -1,5 +1,5 @@
-import { Memory } from "./memory";
-import { Calculator } from "./calculator";
+import { Memory } from "./memory.js";
+import { Calculator } from "./calculator.js";
 export const Interpreter = {
     parseBlocks(container) {
         return Array.from(container.children).map(block => {

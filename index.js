@@ -1,5 +1,5 @@
-import { Memory } from "./memory";
-import { Interpreter } from "./interpreter";
+import { Memory } from "./memory.js";
+import { Interpreter } from "./interpreter.js";
 let draggedElement = null;
 
     document.addEventListener('dragstart', (e) => {

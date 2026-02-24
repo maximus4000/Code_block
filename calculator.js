@@ -1,4 +1,4 @@
-import { Memory } from "./memory";
+import { Memory } from "./memory.js";
 export const Calculator = {
     tokenize(str) {
         return str.replace(/\s+/g, '').match(/\d+|[a-zA-Zа-яА-Я]+|[\+\-\*\/\%\(\)]/g) || [];
