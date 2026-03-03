@@ -15,8 +15,11 @@ body { font-family: sans-serif; background: #f0f2f5; margin: 0; }
 .block input { padding: 4px; border: 1px solid #ccc; border-radius: 3px; width: 70px; }
 
 .declare { border-left: 6px solid #4a90e2; }
+.declare-arr { border-left: 6px solid #4a90e2; }
 .assign { border-left: 6px solid #f5a623; }
+.assign-arr { border-left: 6px solid #f5a623; }
 .if { border-left: 6px solid #7ed321;}
+.while { border-left: 6px solid #7121d3;}
 .cond-op{ border: 1px solid #ccc; border-radius: 3px;}
 
 .sub-blocks { 

@@ -17,8 +17,22 @@
             <input type="text" class="var-names" placeholder="x, y, a">
         </div>
 
+        <div class="block declare-arr" draggable="true" data-type="declare-arr">
+            <span>Создать массив:</span>
+            <input type="text" class="arr-name" placeholder="x">
+            <span>Размер:</span>
+            <input type="text" class="arr-size" placeholder="10">
+        </div>
+
         <div class="block assign" draggable="true" data-type="assign">
             <input type="text" class="var-target" placeholder="x">
+            <span>=</span>
+            <input type="text" class="expression" placeholder="5 + y * 2">
+        </div>
+
+        <div class="block assign-arr" draggable="true" data-type="assign-arr">
+            <input type="text" class="var-target" placeholder="x">
+            <input type="text" class="index-expr" placeholder="index">
             <span>=</span>
             <input type="text" class="expression" placeholder="5 + y * 2">
         </div>
@@ -35,13 +49,14 @@
                 </select>
                 <input type="text" class="cond-right" placeholder="10">
             </div>
-            <div class="sub-blocks" data-container="true">
-
-            </div>
+            <span>То:</span>
+            <div class="sub-blocks true-branch" data-container="true"></div>
+            <span>Иначе:</span>
+            <div class="sub-blocks false-branch" data-container="true"></div>
         </div>
         <div class="block while" draggable="true" data-type="while">
             <div class="while-condition">
-                <span>Если</span>
+                <span>Пока</span>
                 <input type="text" class="cond-left" placeholder="x">
                 <select class="cond-op">
                     <option value=">">></option>

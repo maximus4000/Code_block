@@ -1,12 +1,14 @@
 import { Memory } from "./memory.js";
 export const Calculator = {
     tokenize(str) {
-        return str.replace(/\s+/g, '').match(/\d+|[a-zA-Zа-яА-Я]+|[\+\-\*\/\%\(\)]/g) || [];
+        return str.replace(/\s+/g, '').match(/\d+|[a-zA-Zа-яА-Я]+|&&|\|\||!=|==|<=|>=|[\+\-\*\/\%\(\)\!\<\>]/g) || [];
     },
     sorting(tokens) {
         const output = [];
         const stack = [];
-        const ops = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2 };
+        const ops = { '||': 1, '&&': 2, '!': 3,
+            '==': 4, '!=': 4, '<': 4, '>': 4, '<=': 4, '>=': 4,
+            '+': 5, '-': 5, '*': 6, '/': 6, '%': 6  };
 
         tokens.forEach(token => {
             if (/\d+/.test(token)) output.push({ type: 'int', val: parseInt(token) });
@@ -34,6 +36,7 @@ export const Calculator = {
             else if (node.type === 'var') stack.push(Memory.get(node.val));
             else {
                 const b = stack.pop();
+                if (node === '!') { stack.push(!b ? 1 : 0); return; }
                 const a = stack.pop();
                 switch (node) {
                     case '+': stack.push(a + b); break;
@@ -41,6 +44,12 @@ export const Calculator = {
                     case '*': stack.push(a * b); break;
                     case '/': stack.push(b === 0 ? 0 : Math.trunc(a / b)); break;
                     case '%': stack.push(b === 0 ? 0 : a % b); break;
+                    case '&&': stack.push(a && b ? 1 : 0); break;
+                    case '||': stack.push(a || b ? 1 : 0); break;
+                    case '>': stack.push(a > b ? 1 : 0); break;
+                    case '<': stack.push(a < b ? 1 : 0); break;
+                    case '==': stack.push(a === b ? 1 : 0); break;
+                    case '!=': stack.push(a === b ? 0 : 1); break;
                 }
             }
         });

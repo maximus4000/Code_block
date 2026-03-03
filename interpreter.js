@@ -10,15 +10,25 @@ export const Interpreter = {
                 case 'declare':
                     data.names = block.querySelector('.var-names').value;
                     break
+                case 'declare-arr':
+                    data.names = block.querySelector('.arr-name').value;
+                    data.size = block.querySelector('.arr-size').value;
+                    break
                 case 'assign':
                     data.target = block.querySelector('.var-target').value;
                     data.expr = block.querySelector('.expression').value;
+                    break
+                case 'assign-arr':
+                    data.target = block.querySelector('.var-target').value;
+                    data.indexExpr = block.querySelector('.index-expr').value;
+                    data.valueExpr = block.querySelector('.expression').value;
                     break
                 case 'if':
                     data.leftExpr = block.querySelector('.cond-left').value;
                     data.op = block.querySelector('.cond-op').value;
                     data.rightExpr = block.querySelector('.cond-right').value;
-                    data.subProgram = this.parseBlocks(block.querySelector('.sub-blocks'));
+                    data.TrueProgram = this.parseBlocks(block.querySelector('.true-branch'));
+                    data.FalseProgram = this.parseBlocks(block.querySelector('.false-branch'));
                     break
                 case 'while':
                     data.leftExpr = block.querySelector('.cond-left').value;
@@ -37,9 +47,18 @@ export const Interpreter = {
                 case 'declare':
                     node.names.split(',').forEach(n => Memory.set(n, 0));
                     break;
+                case 'declare-arr':
+                    const size = Calculator.evaluate(node.size)
+                    Memory.declareArray(node.names, size)
+                    break;
                 case 'assign':
                     const val = Calculator.evaluate(node.expr);
                     Memory.set(node.target, val);
+                    break;
+                case 'assign-arr':
+                    const arr_val = Calculator.evaluate(node.valueExpr)
+                    const idx = Calculator.evaluate(node.indexExpr)
+                    Memory.set(node.target, arr_val, idx);
                     break;
                 case 'if':
                     const left = Calculator.evaluate(node.leftExpr);
@@ -51,7 +70,8 @@ export const Interpreter = {
                         case '=': condition = left === right; break;
                         case '!=': condition = left !== right; break;
                     }
-                    if (condition) await this.run(node.subProgram);
+                    if (condition) await this.run(node.TrueProgram);
+                    else await this.run(node.FalseProgram);
                     break;
                 case 'while':
                     let conditionN = true;
