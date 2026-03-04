@@ -23,6 +23,11 @@ export const Interpreter = {
                     data.indexExpr = block.querySelector('.index-expr').value;
                     data.valueExpr = block.querySelector('.expression').value;
                     break
+                case 'assign-arrIndex':
+                    data.target = block.querySelector('.var-target').value;
+                    data.arr = block.querySelector('.arr').value;
+                    data.indexExpr = block.querySelector('.index-expr').value;
+                    break
                 case 'if':
                     data.leftExpr = block.querySelector('.cond-left').value;
                     data.op = block.querySelector('.cond-op').value;
@@ -59,6 +64,10 @@ export const Interpreter = {
                     const arr_val = Calculator.evaluate(node.valueExpr)
                     const idx = Calculator.evaluate(node.indexExpr)
                     Memory.set(node.target, arr_val, idx);
+                    break;
+                case 'assign-arrIndex':
+                    const indx = Calculator.evaluate(node.indexExpr)
+                    Memory.set(node.target, Memory.get(node.arr, indx));
                     break;
                 case 'if':
                     const left = Calculator.evaluate(node.leftExpr);
