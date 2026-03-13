@@ -1,13 +1,13 @@
 import { Memory } from "./memory.js";
 export const Calculator = {
     tokenize(str) {
-        return str.replace(/\s+/g, '').match(/\d+|[a-zA-Zа-яА-Я]+|&&|\|\||!=|==|<=|>=|[\+\-\*\/\%\(\)\!\<\>]/g) || [];
+        return str.replace(/\s+/g, '').match(/\d+|[a-zA-Zа-яА-Я]+|&&|\|\||!==|===|<=|>=|[\+\-\*\/\%\(\)\!\<\>]/g) || [];
     },
     sorting(tokens) {
         const output = [];
         const stack = [];
         const ops = { '||': 1, '&&': 2, '!': 3,
-            '==': 4, '!=': 4, '<': 4, '>': 4, '<=': 4, '>=': 4,
+            '===': 4, '!==': 4, '<': 4, '>': 4, '<=': 4, '>=': 4,
             '+': 5, '-': 5, '*': 6, '/': 6, '%': 6  };
 
         tokens.forEach(token => {
@@ -48,6 +48,8 @@ export const Calculator = {
                     case '||': stack.push(a || b ? 1 : 0); break;
                     case '>': stack.push(a > b ? 1 : 0); break;
                     case '<': stack.push(a < b ? 1 : 0); break;
+                    case '>': stack.push(a >= b ? 1 : 0); break;
+                    case '<': stack.push(a <= b ? 1 : 0); break;
                     case '==': stack.push(a === b ? 1 : 0); break;
                     case '!=': stack.push(a === b ? 0 : 1); break;
                 }
