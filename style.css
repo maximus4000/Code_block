@@ -1,14 +1,14 @@
 body { font-family: sans-serif; background: #ecf0f5; margin: 0; }
 .app-container { display: flex; height: 100vh; }
 
-.toolbox { width: 300px; background: #f5f7f9; border-right: 2px solid #ccc; padding: 15px; overflow-y: auto; }
+.toolbox { width: 300px; background: #f8fbff; border-right: 2px solid #ccc; padding: 15px; overflow-y: auto; }
 .toolbox h3 { margin-top: 0; color: #333; }
 
 .main-panel { flex-grow: 1; display: flex; flex-direction: column; padding: 15px; }
-.workspace { flex-grow: 1; background: #f5fdff; border: 2px dashed #bbb; border-radius: 8px; padding: 20px; overflow-y: auto; }
+.workspace { flex-grow: 1; background: #e2e7eb; border: 2px dashed #bbb; border-radius: 8px; padding: 20px; overflow-y: auto; }
 
 .block { 
-    background: white; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; 
+    background: rgb(255, 255, 255); border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; 
     border-radius: 4px; cursor: move; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
@@ -26,8 +26,9 @@ body { font-family: sans-serif; background: #ecf0f5; margin: 0; }
 }
 
 .controls { margin-bottom: 15px;  }
-#run-btn { background: #28a745; color: rgb(255, 255, 255); font-weight: 700; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+button{color: white;font-weight: 700; border: none; border-radius: 4px; cursor: pointer; }
+#run-btn { background: #28a745; padding: 10px 20px;  }
 #run-btn:hover { background: #218838; }
 
-#rel-btn { background: #a72828; color: white; font-weight: 700; border: none; padding: 7px 10px; border-radius: 4px; cursor: pointer; }
+#rel-btn { background: #a72828; padding: 7px 10px;}
 #rel-btn:hover { background: #882121; }
